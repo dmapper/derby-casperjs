@@ -78,7 +78,7 @@ casper.then ->
 
 Refresh the page using `app.history.refresh` on the client.
 
-## `sel`
+## sel
 
 ### `sel.text([Css3Selector, ]text)`
 
