@@ -22,7 +22,9 @@ constants =
 {model, history, sel} = require('derby-casperjs')(casper, constants)
 ```
 
-## `casper.waitForUrl(url[, cb, onTimeout, timeout])`
+## casper.waitForUrl
+
+### `casper.waitForUrl(url[, cb, onTimeout, timeout])`
 
 Properly wait for derby to render page on client/server side.
 
@@ -109,9 +111,3 @@ casper.then ->
   @shot() # test/screenshots/3.png
   @shot 'foobar' # test/screenshots/foobar.png
 ```
-
-## casper.
-
-## sel
-
-### sel.text('form button', 'Reset'), 'Reset button'
