@@ -28,10 +28,12 @@ constants =
 
 Properly wait for derby to render page on client/server side.
 
+```coffee
 casper.start constants.baseUrl, ->
   @waitForUrl '/', =>
     # On this stage derby fully loaded its client scripts and initialized everything
     @shot()
+```
 
 ## model
 
