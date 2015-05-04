@@ -1,6 +1,6 @@
 {
   "name": "derby-casperjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helpers and tweaks for Casper.js to test Derby.js apps",
   "main": "index.js",
   "scripts": {
