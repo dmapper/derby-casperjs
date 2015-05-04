@@ -1,0 +1,37 @@
+{
+  "name": "derby-casperjs",
+  "version": "1.0.0",
+  "description": "Helpers and tweaks for Casper.js to test Derby.js apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "derby-dev-helpers compile -c",
+    "postpublish": "derby-dev-helpers revert -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dmapper/derby-casperjs.git"
+  },
+  "keywords": [
+    "casper",
+    "casperjs",
+    "derby",
+    "derbyjs",
+    "test",
+    "testing",
+    "client"
+  ],
+  "author": "Pavel Zhukov <cray0000@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmapper/derby-casperjs/issues"
+  },
+  "homepage": "https://github.com/dmapper/derby-casperjs",
+  "devDependencies": {
+    "derby-dev-helpers": "^0.1.2"
+  },
+  "dependencies": {
+    "css-to-xpath": "0.0.3",
+    "lodash": "^3.8.0"
+  }
+}
