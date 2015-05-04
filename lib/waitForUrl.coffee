@@ -2,9 +2,6 @@ _ = require 'lodash'
 
 module.exports = (casper, constants) ->
 
-  _.defaults constants,
-    baseUrl: 'http://localhost:3000'
-
   clearRenderedFlag = ->
     casper.evaluate -> delete window._rendered
 
