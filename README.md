@@ -33,7 +33,7 @@ casper.start constants.baseUrl, ->
     # On this stage derby fully loaded its client scripts and initialized everything
     @shot()
 
-## `model`
+## model
 
 ### `model.set`, `model.get`
 
@@ -60,7 +60,7 @@ casper.then ->
     @shot()
 ```
 
-## `history`
+## history
 
 ### `history.push(path[, cb])`
 
