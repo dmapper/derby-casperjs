@@ -1,3 +1,4 @@
+_ = require 'lodash'
 shotIndex = 0
 
 module.exports = (casper) ->
