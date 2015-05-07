@@ -4,16 +4,24 @@ __operation = 0
 module.exports = (casper, constants) ->
 
   set: (path, value, cb) ->
-    casper.evaluate (path, value, operation) ->
-      app.model.set path, value, ->
-        window.__operation = operation
-    , path, value, ++__operation
-    casper.waitFor ->
-      casper.evaluate (operation) ->
-        window.__operation is operation
-      , __operation
-    , ->
-      cb?()
+    operation = ++__operation
+    prevValue = casper.evaluate (path, value, operation, hasCb) ->
+      app.model.set path, value, if hasCb then ->
+        window.__ops ?= {}
+        window.__ops[operation] = true
+    , path, value, operation, cb?
+    if cb?
+      casper.waitFor ->
+        casper.evaluate (operation) ->
+          if window.__ops[operation]
+            delete window.__ops[operation]
+            true
+          else
+            false
+        , operation
+      , ->
+        cb()
+    prevValue
 
   get: (path) ->
     casper.evaluate (path) ->
