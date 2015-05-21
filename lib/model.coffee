@@ -33,7 +33,7 @@ module.exports = (casper) ->
       , path
 
     wait: (cb) ->
-      model.set 'service.__ping', __operation, cb
+      model.set "service.__ping_#{ __operation }", true, cb
 
     waitFor: (path, cb, onTimeout, timeout) ->
       casper.waitFor ->
