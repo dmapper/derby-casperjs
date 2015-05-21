@@ -1,4 +1,5 @@
 _ = require 'lodash'
+uuid = require 'node-uuid'
 __operation = 0
 model = undefined
 
@@ -33,7 +34,7 @@ module.exports = (casper) ->
       , path
 
     wait: (cb) ->
-      model.set "service.__ping_#{ __operation }", true, cb
+      model.set "service.__ping_#{ uuid.v1() }", true, cb
 
     waitFor: (path, cb, onTimeout, timeout) ->
       casper.waitFor ->
