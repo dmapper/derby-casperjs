@@ -37,7 +37,7 @@ module.exports = (casper) ->
         app.model.del path, if hasCb then ->
           window.__ops ?= {}
           window.__ops[operation] = true
-      , path, value, operation, cb?
+      , path, operation, cb?
       model._waitForOperation operation, cb
       prevValue
 
