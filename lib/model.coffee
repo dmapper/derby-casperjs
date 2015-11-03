@@ -8,6 +8,19 @@ module.exports = (casper) ->
 
   model =
 
+    _waitForOperation: (operation, cb) ->
+      return unless cb?
+      casper.waitFor ->
+        casper.evaluate (operation) ->
+          if window.__ops[operation]
+            delete window.__ops[operation]
+            true
+          else
+            false
+        , operation
+      , ->
+        cb()
+
     set: (path, value, cb) ->
       operation = ++__operation
       prevValue = casper.evaluate (path, value, operation, hasCb) ->
@@ -15,17 +28,17 @@ module.exports = (casper) ->
           window.__ops ?= {}
           window.__ops[operation] = true
       , path, value, operation, cb?
-      if cb?
-        casper.waitFor ->
-          casper.evaluate (operation) ->
-            if window.__ops[operation]
-              delete window.__ops[operation]
-              true
-            else
-              false
-          , operation
-        , ->
-          cb()
+      model._waitForOperation operation, cb
+      prevValue
+
+    del: (path, cb) ->
+      operation = ++__operation
+      prevValue = casper.evaluate (path, operation, hasCb) ->
+        app.model.del path, if hasCb then ->
+          window.__ops ?= {}
+          window.__ops[operation] = true
+      , path, value, operation, cb?
+      model._waitForOperation operation, cb
       prevValue
 
     get: (path) ->
