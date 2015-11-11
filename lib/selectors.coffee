@@ -4,6 +4,8 @@ cssToXPath = require('css-to-xpath')
 
 module.exports = (casper) ->
 
+  # Returns XPath as a CasperJS XPath instance (NOT a string, if you want to get a string
+  # from it - get the .path field)
   text: -> # (text) or (selector, text) or (selector, text, returnSelectorNode)
 
     # Return text nodes which contain 'text'
@@ -29,3 +31,7 @@ module.exports = (casper) ->
 
     else
       throw new Error("Invalid amount of arguments provided - #{ arguments.length }")
+
+  # Returns XPath as a string
+  toXPath: (selector) ->
+    cssToXPath selector
