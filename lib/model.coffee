@@ -1,5 +1,4 @@
 _ = require 'lodash'
-uuid = require 'node-uuid'
 __operation = 0
 model = undefined
 
@@ -47,7 +46,16 @@ module.exports = (casper) ->
       , path
 
     wait: (cb) ->
-      model.add 'service', {id: "__ping_#{ uuid.v1() }"}, cb
+      operation = ++__operation
+      pingId = casper.evaluate (operation, hasCb) ->
+        _pingId = '__ping_' + app.model.id()
+        app.model.add 'service', {id: _pingId}, if hasCb then ->
+          window.__ops ?= {}
+          window.__ops[operation] = true
+        _pingId
+      , operation, cb?
+      model._waitForOperation operation, cb
+      pingId
 
     waitFor: (path, cb, onTimeout, timeout) ->
       casper.waitFor ->
