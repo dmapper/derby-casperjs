@@ -47,7 +47,7 @@ module.exports = (casper) ->
       , path
 
     wait: (cb) ->
-      model.set "service.__ping_#{ uuid.v1() }", true, cb
+      model.add 'service', {id: "__ping_#{ uuid.v1() }"}, cb
 
     waitFor: (path, cb, onTimeout, timeout) ->
       casper.waitFor ->
